@@ -185,6 +185,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/2Player/TrialGameScene2P.unity
+    guid: 28f40cf585df5cf49809e3c37ce227a2
+  - enabled: 1
+    path: Assets/Scenes/2Player/Testing.unity
+    guid: db20c6d758ac637449bc351f4b6f3a79
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000

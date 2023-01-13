@@ -764,7 +764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 585638018}
         m_TargetAssemblyTypeName: SceneHandler_2P, Assembly-CSharp
-        m_MethodName: OnClickPlay
+        m_MethodName: OnClickTesting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

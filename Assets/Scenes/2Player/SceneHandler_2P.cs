@@ -13,4 +13,8 @@ public class SceneHandler_2P : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+      public void OnClickTesting()
+    {
+        SceneManager.LoadScene("Testing");
+    }
 }

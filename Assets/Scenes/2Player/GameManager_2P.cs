@@ -37,48 +37,14 @@ public class GameManager_2P : MonoBehaviour
     private float dodgeButtonTimer = 0f;
     public float deathAnimationDuration = 0.3f;
 
-    public GameObject playerOne;
-    public GameObject playerTwo;
-    private BoxCollider2D player1Col;
-    private Rigidbody2D player1Rig;
-    private BoxCollider2D player2Col;
-    private Rigidbody2D player2Rig;
+
 
     void Start()
     {
-        // Add the BoxCollider2D component to the player 1 GameObject
-        player1Col = playerOne.AddComponent<BoxCollider2D>();
-        player1Col.size = new Vector2(1, 1); // set the size of the collider
-        player1Col.isTrigger = true; // set collider as trigger
-
-        // Add the Rigidbody2D component to the player 1 GameObject
-        player1Rig = playerOne.AddComponent<Rigidbody2D>();
-        player1Rig.mass = 1; // set the mass of the rigidbody
-        player1Rig.bodyType = RigidbodyType2D.Dynamic; // set the body type as dynamic
-
-        // Add the BoxCollider2D component to the player 2 GameObject
-        player2Col = playerTwo.AddComponent<BoxCollider2D>();
-        player2Col.size = new Vector2(1, 1); // set the size of the collider
-        player2Col.isTrigger = true; // set collider as trigger
-
-        // Add the Rigidbody2D component to the player 2 GameObject
-        player2Rig = playerTwo.AddComponent<Rigidbody2D>();
-        player2Rig.mass = 1; // set the mass of the rigidbody
-        player2Rig.bodyType = RigidbodyType2D.Dynamic; // set the body type as dynamic
-
         player1TurnIndicator.gameObject.SetActive(false);
         player2TurnIndicator.gameObject.SetActive(false);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-
-    {
-        if (collision.gameObject == playerOne || collision.gameObject == playerTwo)
-        {
-            // Do something when the player 1 and player 2 colliders come into contact
-            Debug.Log("Player 1 and Player 2 have collided!");
-        }
-    }
 
     void Update()
     {
@@ -132,7 +98,7 @@ public class GameManager_2P : MonoBehaviour
             dodgeButtonDisabled = true;
                 
                 // Start the dodge animation and wait for it to finish
-                animatorEnemyDodge.SetTrigger("P2 Dodge");
+                animatorEnemyDodge.SetTrigger("Dodge");
                 StartCoroutine(WaitForDodge2());
             }
         if (Input.GetKey(KeyCode.W) && !dodgeButtonDisabled)
@@ -142,7 +108,7 @@ public class GameManager_2P : MonoBehaviour
                 // Set the flag to indicate that the enemy has dodged
             enemyDodged = true;
                 // Start the dodge animation and wait for it to finish
-            animatorPlayerDodge.SetTrigger("P1 Dodge");
+            animatorPlayerDodge.SetTrigger("Dodge");
             StartCoroutine(WaitForDodgeW());
         }
     if (dodgeButtonDisabled)
@@ -188,7 +154,7 @@ public class GameManager_2P : MonoBehaviour
         ultimateAttackEnabled = true;
         }
         // Start the attack animation and wait for it to finish
-        animatorPlayerAttk.SetBool("P1 Attk", true);
+        animatorPlayerAttk.SetBool("Attack", true);
     }
      // Attack the player
     public void AttackPlayer(GameObject other)
@@ -208,7 +174,7 @@ public class GameManager_2P : MonoBehaviour
         ultimateAttackEnabled = true;
         }
         // Start the attack animation and wait for it to finish
-        animatorEnemyAttk.SetBool("P2 Attack", true);
+        animatorEnemyAttk.SetBool("Attack", true);
     }
 
 
@@ -268,7 +234,7 @@ public class GameManager_2P : MonoBehaviour
     
     IEnumerator WaitForAttackQ()
         {
-        animatorPlayerAttk.SetTrigger("P1 Attk");
+        animatorPlayerAttk.SetTrigger("Attack");
         // Wait for the remaining attack duration
         yield return new WaitForSeconds(attackDuration);
         // If the enemy has not pressed the dodge button during the attack animation, decrease their hit points
@@ -282,12 +248,12 @@ public class GameManager_2P : MonoBehaviour
         // Reset the enemyDodged flag for the next attack
         enemyDodged = false;
         // Turn off the attack animation
-        animatorPlayerAttk.SetBool("P1 Attk", false);
+        animatorPlayerAttk.SetBool("Attack", false);
         }
 
      IEnumerator WaitForAttack1()
         {
-        animatorEnemyAttk.SetTrigger("P2 Attack");
+        animatorEnemyAttk.SetTrigger("Attack");
         // Wait for the remaining attack duration
         yield return new WaitForSeconds(attackDuration);
         // If the enemy has not pressed the dodge button during the attack animation, decrease their hit points
@@ -300,7 +266,7 @@ public class GameManager_2P : MonoBehaviour
         // Reset the enemyDodged flag for the next attack
         enemyDodged = false;
          // Turn off the attack animation
-        animatorEnemyAttk.SetBool("P2 Attack", false);
+        animatorEnemyAttk.SetBool("Attack", false);
         }
 
     IEnumerator WaitForDodgeW()
@@ -309,7 +275,7 @@ public class GameManager_2P : MonoBehaviour
             // Wait for the specified duration
             yield return new WaitForSeconds(dodgeDuration);
             // Turn off the dodge animation
-            animatorPlayerDodge.SetBool("P1 Dodge", false);
+            animatorPlayerDodge.SetBool("Dodge", false);
         }
 
      IEnumerator WaitForDodge2()
@@ -318,7 +284,7 @@ public class GameManager_2P : MonoBehaviour
             // Wait for the specified duration
             yield return new WaitForSeconds(dodgeDuration);
             // Turn off the dodge animation
-            animatorEnemyDodge.SetBool("P2 Dodge", false);
+            animatorEnemyDodge.SetBool("Dodge", false);
         }
 
 
