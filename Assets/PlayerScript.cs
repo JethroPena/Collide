@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
             {
                 gameManager.isP1Colliding = true;
                 Debug.Log("P1 Collide");
+                gameManager.NextTurn();
             }
     }
 

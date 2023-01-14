@@ -35,8 +35,7 @@ public class GameManagerTesting : MonoBehaviour
     public float deathAnimationDuration = 0.3f;
     public bool isP1Colliding = false;
     public bool isP2Colliding = false;
-
-    public Image player1HIT;
+    
 
 
 
@@ -45,7 +44,6 @@ public class GameManagerTesting : MonoBehaviour
     {
         player1TurnIndicator.gameObject.SetActive(false);
         player2TurnIndicator.gameObject.SetActive(false);
-        player1HIT.gameObject.SetActive(false);
     }
 
 
@@ -58,58 +56,65 @@ public class GameManagerTesting : MonoBehaviour
             // Show the player 1 turn indicator and set the color to green
             player1TurnIndicator.gameObject.SetActive(true);
             player1TurnIndicator.color = Color.green;
-
             // Hide the player 2 turn indicator
             player2TurnIndicator.gameObject.SetActive(false);
              // Otherwise, it's player 2's turn
+
+            if (Input.GetKeyDown(KeyCode.A))
+                {
+                    StartCoroutine(Player1Attack());
+                    NextTurn();
+                }
+        
+
+            if (Input.GetKeyDown(KeyCode.D))
+                {
+                    StartCoroutine(WaitPlayer1Ulti());
+                    NextTurn();
+                }
+
         }
+
         else
             {   
             player2TurnIndicator.gameObject.SetActive(true);
             player2TurnIndicator.color = Color.green;
-
             // Hide the player 1 turn indicator
             player1TurnIndicator.gameObject.SetActive(false);
+            
+            
+              //PLAYER 2 BUTTONS // 
+            if (Input.GetKeyDown(KeyCode.J))
+                {
+                    StartCoroutine(Player2Attack());
+                    NextTurn();
+                }
+
+
+            if (Input.GetKeyDown(KeyCode.L))
+                {
+                    StartCoroutine(WaitPlayer2Ulti());
+                    NextTurn();
+                }
+
             }   
 
 
-        if (Input.GetKeyDown(KeyCode.A))
-            {
-                isPlayer1Turn = false;
-                StartCoroutine(Player1Attack());
-            }
-        
-        if (Input.GetKey(KeyCode.S))
-        {
-            animatorPlayerDodge.SetTrigger("Dodge");
-        }
+            if (Input.GetKey(KeyCode.S))
+                {
+                    animatorPlayerDodge.SetTrigger("Dodge");
+                }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            isPlayer1Turn = false;
-            StartCoroutine(WaitPlayer1Ulti());
-        }
-
-              //PLAYER 2 BUTTONS // 
-        if (Input.GetKeyDown(KeyCode.J))
-            {
-                isPlayer1Turn = true;
-                StartCoroutine(Player2Attack());
-            }
-        
-        if (Input.GetKey(KeyCode.K))
-        {
-            animatorEnemyDodge.SetTrigger("Dodge");
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            isPlayer1Turn = true;
-            StartCoroutine(WaitPlayer2Ulti());
-        }
-
+            if (Input.GetKey(KeyCode.K))
+                {
+                    animatorEnemyDodge.SetTrigger("Dodge");
+                }
     }   
 
+        public void NextTurn()
+        {
+            isPlayer1Turn = !isPlayer1Turn;
+        }
 
         public void Player1Ulti(GameObject other)
         {

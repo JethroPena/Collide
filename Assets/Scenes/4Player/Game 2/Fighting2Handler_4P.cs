@@ -8,18 +8,18 @@ using UnityEngine.Video;
 
 public class Fighting2Handler_4P : MonoBehaviour
 {   
+
     public static List<string> Winners;
     public TextMeshProUGUI playerOneName;
     public TextMeshProUGUI playerTwoName;
-    public TextMeshProUGUI playerThreeName;
-    public TextMeshProUGUI playerFourName;
-    public TextMeshProUGUI playerFiveName;
-    public TextMeshProUGUI playerSixName;
     public TextMeshProUGUI playerOneHPUI;
     public TextMeshProUGUI playerTwoHPUI;
+    public Game2Manager_4P gameManager;
+    public int energyGainPerHit = 10; // Change 10 to the desired energy gain value
     public Slider healthBarSliderP1;
     public Slider healthBarSliderP2;
- 
+    public Slider ultimateEnergySliderP1;
+    public Slider ultimateEnergySliderP2;
     public int playerOneHP;
     public int playerTwoHP;
 
@@ -34,12 +34,12 @@ public class Fighting2Handler_4P : MonoBehaviour
     void Start()
     {
         Winners = new List<string>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         playerOneHPUI.text = playerOneHP + "";
         playerTwoHPUI.text = playerTwoHP + "";
 
@@ -49,10 +49,41 @@ public class Fighting2Handler_4P : MonoBehaviour
         StartCoroutine(healthChecker());
     }
 
+      public void TakeDamageP2(int damage)
+    {
+        playerTwoHP -= damage;
+        // Update the UI text element to show the updated health value
+        playerTwoHPUI.text = playerTwoHP + "";
+
+        // Update the health bar to reflect the current health of the player
+        healthBarSliderP2.value = playerTwoHP / (float)NameHandler.playerHP;
+        // Print a debug log message
+        Debug.Log("P2 Health decreased: " + damage);
+        ultimateEnergySliderP1.value = gameManager.playerOneEnergy/ 40f;
+        Debug.Log("Slider Ult Gained P1");
+
+    }
+
+
+     public void TakeDamageP1(int damage)
+    {
+        playerOneHP -= damage;
+
+        // Update the UI text element to show the updated health value
+        playerOneHPUI.text = playerOneHP + "";
+        // Update the health bar to reflect the current health of the player
+        healthBarSliderP1.value = playerOneHP / (float)NameHandler.playerHP;
+        // Print a debug log message
+        Debug.Log("P1 Health decreased: " + damage);
+        ultimateEnergySliderP2.value = gameManager.playerTwoEnergy/ 40f;
+        Debug.Log("Slider Ult Gained P2");
+    }
+
+
     IEnumerator healthChecker()
     {   
 
-        //Game 1
+        //GAME 1
         if (playerOneHP <= 0)
         {
             NameHandler.winner = 1;
@@ -68,9 +99,6 @@ public class Fighting2Handler_4P : MonoBehaviour
             yield return new WaitForSeconds(.1f);
             SceneManager.LoadScene("WinnerGame2_4P");
         }
-
-        
-        
 
     }
 }

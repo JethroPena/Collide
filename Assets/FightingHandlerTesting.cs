@@ -47,14 +47,11 @@ public class FightingHandlerTesting : MonoBehaviour
         healthBarSliderP1.value = playerOneHP / (float)NameHandler.playerHP;
         healthBarSliderP2.value = playerTwoHP / (float)NameHandler.playerHP;
         StartCoroutine(healthChecker());
-
-        ultimateEnergySliderP2.value = gameManager.playerTwoEnergy;
     }
 
     public void TakeDamageP2(int damage)
     {
         playerTwoHP -= damage;
-
         // Update the UI text element to show the updated health value
         playerTwoHPUI.text = playerTwoHP + "";
 
@@ -62,6 +59,9 @@ public class FightingHandlerTesting : MonoBehaviour
         healthBarSliderP2.value = playerTwoHP / (float)NameHandler.playerHP;
         // Print a debug log message
         Debug.Log("P2 Health decreased: " + damage);
+        ultimateEnergySliderP1.value = gameManager.playerOneEnergy/ 50f;
+        Debug.Log("Slider Ult Gained P1");
+
     }
 
 
@@ -71,11 +71,12 @@ public class FightingHandlerTesting : MonoBehaviour
 
         // Update the UI text element to show the updated health value
         playerOneHPUI.text = playerOneHP + "";
-
         // Update the health bar to reflect the current health of the player
         healthBarSliderP1.value = playerOneHP / (float)NameHandler.playerHP;
         // Print a debug log message
         Debug.Log("P1 Health decreased: " + damage);
+         ultimateEnergySliderP2.value = gameManager.playerTwoEnergy/ 50f;
+        Debug.Log("Slider Ult Gained P2");
     }
 
 

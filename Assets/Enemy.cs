@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
             {
                 gameManager.isP2Colliding = true;
                 Debug.Log("P2 Collide");
+                gameManager.NextTurn();
             }
     }
 
