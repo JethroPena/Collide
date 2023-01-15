@@ -446,8 +446,8 @@ MonoBehaviour:
   energyGainPerHit: 10
   healthBarSliderP1: {fileID: 430693351}
   healthBarSliderP2: {fileID: 1704714413}
-  ultimateEnergySliderP1: {fileID: 0}
-  ultimateEnergySliderP2: {fileID: 0}
+  ultimateEnergySliderP1: {fileID: 1661000036}
+  ultimateEnergySliderP2: {fileID: 130993685}
   playerOneHP: 0
   playerTwoHP: 0
 --- !u!4 &349970711
@@ -1314,7 +1314,6 @@ GameObject:
   - component: {fileID: 910967499}
   - component: {fileID: 910967504}
   - component: {fileID: 910967501}
-  - component: {fileID: 910967497}
   - component: {fileID: 910967503}
   m_Layer: 5
   m_Name: Player
@@ -1343,19 +1342,6 @@ RectTransform:
   m_AnchoredPosition: {x: -436, y: -235}
   m_SizeDelta: {x: 4, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &910967497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910967495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4e4c4efef99a94e8cd0f5b88cf2b5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1405235973}
 --- !u!50 &910967499
 Rigidbody2D:
   serializedVersion: 4
@@ -1860,7 +1846,7 @@ MonoBehaviour:
   ultiDuration: 1
   ultiPower: 30
   dodgeDuration: 0.9
-  attackDuration: 0.3
+  attackDuration: 2
   attackPower: 10
   player1: {fileID: 910967495}
   player2: {fileID: 134568170}
@@ -1875,7 +1861,6 @@ MonoBehaviour:
   deathAnimationDuration: 0.3
   isP1Colliding: 0
   isP2Colliding: 0
-  player1HIT: {fileID: 0}
 --- !u!4 &1405235974
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,7 +1953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520870948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

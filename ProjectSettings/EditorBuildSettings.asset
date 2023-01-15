@@ -164,6 +164,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/6Player/Game 5/WinnerGame5_6P.unity
     guid: 86de19d0278714e49bb58481869c896e
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: 8b29fe2541ff8b24c9e7a4dbf8f189fb
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
